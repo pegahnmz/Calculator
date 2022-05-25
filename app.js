@@ -17,18 +17,12 @@ const historyPage = document.querySelector(".history")
 const showHistory = document.querySelector("#showHistory")
 const backres = document.querySelector("#backres")
 
-let history=[{operation:'2+3',
-res:'3'},
-{operation:'2+3',
-res:'1'},
-{operation:'2+3',
-res:'0'}
-]
+let history=[]
 let equalFlag=false
 let willClear =false
 let backFlag = false
-let indexHistory=-1;
-renderHistory();
+let indexHistory=history.length-1;
+renderHistory()
 
 
 
@@ -52,6 +46,7 @@ btn.map((button) => {
                 equalFlag=false
                 backFlag=false
                 begin__state();
+                renderHistory()
                 break
             case '%':
                 if(!equalFlag){
@@ -132,14 +127,26 @@ function saveOnHistory(){
 /*render all history */
 function renderHistory(){
     history__container.innerHTML=''
-    for(let el of history){
-        let newrow = `
-        <div class="history__row">
-                            <p>${el.operation}</p>
-                            <p >${el.res}</p>
-                        </div>`;
-        history__container.innerHTML += newrow;
+    if(history.length<=0){
+        clearHistory.classList.add('disabledbtn')
+        backres.classList.add('disabledbtn')
+        clearHistory.disabled=true
+        backres.disabled=true
+    }else{
+        clearHistory.classList.remove('disabledbtn')
+        backres.classList.remove('disabledbtn')
+        clearHistory.disabled=false
+        backres.disabled=false
+        for(let el of history){
+            let newrow = `
+            <div class="history__row">
+                                <p>${el.operation}</p>
+                                <p >${el.res}</p>
+                            </div>`;
+            history__container.innerHTML += newrow;
+        }
     }
+
 }
 
 /**calc percent */
@@ -192,27 +199,33 @@ function start_calc(){
     calc(v)
 }
 
-/*show the preious calculations */
-backres.addEventListener('click',() => {
-    if(backFlag){
-        indexHistory=indexHistory-1;
-    }else{
-        
-        if(equalFlag){
-            indexHistory=history.length-2
+/*show the previous calculations */
+backres.addEventListener('click',() => {    
+
+        if(backFlag){
+            indexHistory=indexHistory-1;
         }else{
-            indexHistory=history.length-1
+            
+            if(equalFlag){
+                indexHistory=history.length-2
+            }else{
+                indexHistory=history.length-1
+            }
+            
         }
-        
-    }
-    console.log(indexHistory)
-    if(indexHistory>=0){
-        let backresult = history[indexHistory]
-        result__main.innerHTML=backresult.operation
-        result__equal.innerHTML=backresult.res
-        showEqualRes()
-    }
-    backFlag=true
+      
+        if(indexHistory>=0){
+            let backresult = history[indexHistory]
+            result__main.innerHTML=backresult.operation
+            result__equal.innerHTML=backresult.res
+            showEqualRes()
+        }else{
+            backres.classList.add('disabledbtn')
+            backres.disabled=true
+        }
+        backFlag=true
+    
+
 
 })
 
@@ -234,6 +247,7 @@ clearHistory.addEventListener('click', () => {
 /*show history page*/
 showHistory.addEventListener('click', () => {
     historyPage.classList.remove("history_hide")
+    renderHistory()
 })
 
 

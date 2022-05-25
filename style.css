@@ -243,6 +243,16 @@ button:hover{
     -webkit-text-stroke: 0.5px;
 }
 
+.disabledbtn > i::before{
+    color: rgb(195, 193, 193);
+}
+.disabledbtn > i:hover::before{
+    
+    color: rgb(195, 193, 193) !important;
+}
+.disabledbtn:hover{
+    background-color: transparent !important;
+}
 /*history*/
 .history{
 
