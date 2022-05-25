@@ -31,7 +31,7 @@ btn.map((button) => {
     button.addEventListener("click", (e) => {
         
         switch(e.target.value){
-            case 'AC':
+            case 'CE':
                 if(result__main.innerHTML != "0" && !equalFlag){
                     
                     result__main.innerHTML = result__main.innerHTML.slice(0,-1)
@@ -41,7 +41,7 @@ btn.map((button) => {
                     }
                 }
                 break
-            case 'C':
+            case 'AC':
                 result__main.innerHTML= "0";
                 equalFlag=false
                 backFlag=false
@@ -151,13 +151,13 @@ function renderHistory(){
 
 /**calc percent */
 function percent(){
-    if(isNaN( result__main.innerHTML.slice(-1))){
+    if(operations.includes( result__main.innerHTML.slice(-1))){
         //NOT WORK
     }else{
         let tempo = result__main.innerHTML
         let indexOfLastOprator=-1;
         for(let i = tempo.length-1 ; i>=0 ;i--){
-            if(isNaN(tempo[i])){
+            if(operations.includes(tempo[i])){
                 indexOfLastOprator = i;
                 break
             }     
@@ -260,6 +260,8 @@ snackbar_cancel.addEventListener('click',() => {
 snackbar_clear.addEventListener('click',() => {
     willClear=true;
     history=[]
+    equalFlag=false
+    backFlag=false
     renderHistory()
     begin__state()
     snackbar.classList.remove("show__snackbar")

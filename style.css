@@ -17,11 +17,13 @@
     --text-color : snow;
     --bg-color : rgb(86, 82, 105);
     background-color: rgb(86, 82, 105) ;
+    --icon-bg: rgb(26, 135, 147);
 }
 .light{
     --text-color : black;
     --bg-color : snow;
     background-color: snow !important;
+    --icon-bg: rgb(225, 109, 46);
 }
 
 /* */
@@ -53,6 +55,48 @@ button:hover{
     background-color:rgba(33, 40, 104, 0.108) ;
 }
 /* toggle theme icon*/
+.theme{
+    width: 5rem;
+    height: 5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.theme__container{
+    
+    width: 2rem;
+    height: 2rem;
+    border: 2px solid var(--icon-bg);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+.theme__inner{   
+    height: 1.2rem;
+    width: 1.2rem; 
+    border-radius: 50%;
+    color: var(--icon-bg);
+    box-shadow:inset 4px -4px 0;
+    appearance: none;
+    outline: none;
+    cursor: pointer;
+    transition-property: "box-shadow","transform";
+    transition:  0.5s;
+}
+.theme__inner:checked{
+    transform: rotate(360deg);
+    
+    box-shadow: inset 1.2rem 0px 0px ; 
+}
+.theme__inner:checked > .theme__container{
+  
+    transform: rotate3d(1, 1, 0, 180deg);
+}
+
+
+
 .con{
     position: relative;
     width: 5rem;
@@ -182,7 +226,7 @@ button:hover{
 .main__res{
     
     font-size: 2.7rem !important;
-    color: snow !important;
+    color: var(--text-color) !important;
 }
 .result__equal{
     
