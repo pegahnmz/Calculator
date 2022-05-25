@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <link rel="shortcut icon" href="./fav-icon.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body class="dark">
+    <main>
+        <section>
+
+            <div class="container">
+                <div class="history history_hide">
+                    <div class="snackbar">
+                        <p>Are you sure Clear history now?</p>
+                        <button id="snackbar_cancel">Cancel</button>
+                        <button id="snackbar_clear">Clear</button>
+                    </div>
+                    <div class="history__top">
+                        <button id="backToMainPage"><i class="bi-chevron-left"></i></button>
+                        <p>History</p>
+                        <button id="clearHistory"><i class="bi-trash"></i></button>
+                    </div> 
+                    <div class="history__container">
+                    </div>           
+                </div>
+
+                <div class="show__result">
+                    <div class="top">
+                        <button  id="showHistory"><i class="bi-clock-history"></i></button>
+                        <button id="backres"><i  class="bi-arrow-counterclockwise"></i></button>
+                        
+                    </div>
+                    <div class="result">
+                        <div class="result__sub "></div>
+                        <div class="result__main main__res">0</div>
+                        <div class="result__equal hide">= 8</div>
+                    </div>
+
+                </div>
+                <div class="buttons">
+                    <button class="btn green_ic" value="AC">AC</button>
+                    <button class="btn green_ic" id="btn_c" value="C">C</button>
+                    <button class="btn green_ic" value="&#37;">&#37;</button>
+                    <button class="btn red_ic operation" value="/">&divide;</button>
+                    <button class="btn" value="7">7</button>
+                    <button class="btn" value="8">8</button>
+                    <button class="btn" value="9">9</button>
+                    <button class="btn red_ic operation" value="*">&times;</button>
+                    <button class="btn" value="4">4</button>
+                    <button class="btn" value="5">5</button>
+                    <button class="btn" value="6">6</button>
+                    <button class="btn red_ic operation" value="-">&minus;</button>
+                    <button class="btn" value="1">1</button>
+                    <button class="btn" value="2">2</button>
+                    <button class="btn" value="3">3</button>
+                    <button class="btn red_ic operation" value="+">&plus;</button>
+                    <div class="con">
+                        <div class="change__theme">
+                            <input type="checkbox" class="toggle" id="toggle__theme" >
+                            <div class="sq1"></div>
+                            <div class="sq2"></div>
+                        </div>
+                    </div>
+                    
+                    <!-- <button class="btn" value="BS"><i class="bi-backspace red_ic"></i></button> -->
+                    <button class="btn" value="0">0</button>
+                    <button class="btn" value=".">.</button>
+                    <button class="btn red_ic" id="equal" value="&equals;">&equals;</button>
+                </div>
+            </div>
+        </section>
+    </main>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="./app.js"></script>
+</body>
+</html>
