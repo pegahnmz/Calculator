@@ -35,6 +35,7 @@ btn.map((button) => {
                 if(result__main.innerHTML != "0" && !equalFlag){
                     
                     result__main.innerHTML = result__main.innerHTML.slice(0,-1)
+                    start_calc();
                     if(!result__main.innerHTML){
                        // result__main.innerHTML = "0"
                         begin__state();
@@ -53,6 +54,9 @@ btn.map((button) => {
                     percent()
                 }
                 
+                break
+            case '.' :
+                pointoperation();
                 break
             case '=':
                 if(result__main.innerHTML != 0){
@@ -73,18 +77,14 @@ btn.map((button) => {
                                    mr.innerHTML = mr.innerHTML.slice(0,-1)+e.target.value
                                }else{
                                 mr.innerHTML += e.target.value;
-                                calc(mr.innerHTML) 
+                                calc(mr.innerHTML)
+ 
                                }
                        
                         }
     
                     }else{
-                       
-                        if(e.target.value === '.'){
-                            mr.innerHTML += e.target.value;
-                            start_calc();
-                        }
-                        else if(operations.includes(e.target.value)){
+                        if(operations.includes(e.target.value)){
                             
                             mr.innerHTML += e.target.value
                             start_calc();
@@ -103,6 +103,33 @@ btn.map((button) => {
     })
 })
 
+
+/* point operation */
+function pointoperation(){
+    if(result__main.innerHTML === '0'){
+        result__main.innerHTML += '.';
+        start_calc();
+    }else{
+        if(result__main.innerHTML.slice(-1) !== '.'){
+            let tempo = result__main.innerHTML;
+            let indexOfLastOprator=-1;
+            for(let i = tempo.length-1 ; i>=0 ;i--){
+                if(operations.includes(tempo[i])){
+                    indexOfLastOprator = i;
+                    break
+                }     
+            }
+            let tep = tempo.slice(indexOfLastOprator+1);
+
+            tep = tep.split('').includes('.');
+            if(!tep){
+                result__main.innerHTML += '.';
+                calc(result__main.innerHTML)
+            }
+        }
+    }
+
+}
 /*show equal */
 function showEqualRes(){
 
